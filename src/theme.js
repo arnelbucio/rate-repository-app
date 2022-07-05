@@ -15,6 +15,9 @@ const theme = {
     normal: '400',
     bold: '700',
   },
+  appBar: {
+    background: '#24292e',
+  },
 }
 
 export default theme
