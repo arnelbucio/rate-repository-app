@@ -63,7 +63,7 @@ const RepositoryList = () => {
 
   return (
     <FlatList
-      data={repositories}
+      data={repositories.sort((a, b) => a.stargazersCount - b.stargazersCount)}
       ItemSeparatorComponent={ItemSeparator}
       renderItem={renderItem}
       keyExtractor={item => item.id}
