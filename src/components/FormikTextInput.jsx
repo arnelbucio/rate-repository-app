@@ -1,12 +1,12 @@
-import { useField } from 'formik';
-import { StyleSheet } from 'react-native';
-import TextInput from './TextInput';
-import Text from './Text';
+import { StyleSheet } from 'react-native'
+import { useField } from 'formik'
+import TextInput from './TextInput'
+import Text from './Text'
 
 const styles = StyleSheet.create({
   errorText: {
-    marginTop: 5
-  }
+    marginTop: 5,
+  },
 })
 
 const FormikTextInput = ({ name, ...props }) => {
