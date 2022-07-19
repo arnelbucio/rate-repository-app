@@ -11,17 +11,17 @@ const styles = StyleSheet.create({
   scrollview: {
     flexDirection: 'row' // seems unnecessary
   }
-});
+})
 
 const AppBar = () => {
   return (
     <View style={styles.container}>
       <ScrollView horizontal style={styles.scrollview}>
-        <AppBarTab text='Sign in' route='signin' />
         <AppBarTab text='Repositories' route='/' />
+        <AppBarTab text='Sign in' route='signin' />
       </ScrollView>
     </View>
-  );
-};
+  )
+}
 
-export default AppBar;
+export default AppBar
