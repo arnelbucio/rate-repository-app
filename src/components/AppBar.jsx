@@ -1,19 +1,21 @@
-import { View, StyleSheet } from 'react-native';
-import Constants from 'expo-constants';
-import theme from '../theme';
-import AppBarTab from './AppBarTab';
+import { View, StyleSheet } from 'react-native'
+import Constants from 'expo-constants'
+import theme from '../theme'
+import AppBarTab from './AppBarTab'
 
 const styles = StyleSheet.create({
   container: {
     paddingTop: Constants.statusBarHeight,
-    backgroundColor: theme.appBar.background
+    backgroundColor: theme.appBar.background,
+    flexDirection: 'row'
   }
 });
 
 const AppBar = () => {
   return (
     <View style={styles.container}>
-      <AppBarTab text='Repositories' />
+      <AppBarTab text='Repositories' route='/' />
+      <AppBarTab text='Sign in' route='signin' />
     </View>
   );
 };
