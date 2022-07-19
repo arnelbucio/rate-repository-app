@@ -13,11 +13,13 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 4,
     marginBottom: 5,
+    marginTop: 5,
     padding: 10
   },
   button: {
     backgroundColor: theme.colors.primary,
     borderRadius: 4,
+    marginTop: 5,
     padding: 10,
   },
   buttonText: {

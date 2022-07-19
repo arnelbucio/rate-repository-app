@@ -5,6 +5,7 @@ import Text from './Text'
 
 const styles = StyleSheet.create({
   errorText: {
+    color: '#d73a4a',
     marginTop: 5,
   },
 })
