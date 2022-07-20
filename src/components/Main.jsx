@@ -1,5 +1,6 @@
 import { StyleSheet, View } from 'react-native'
 import { Route, Routes, Navigate } from 'react-router-native'
+import { StatusBar } from 'expo-status-bar'
 import RepositoryList from './RepositoryList'
 import AppBar from './AppBar'
 import theme from '../theme';
@@ -22,6 +23,7 @@ const Main = () => {
         <Route path='/signin' element={<SignIn />} exact />
         <Route path='*' element={<Navigate to='/' replace />} />
       </Routes>
+      <StatusBar style='auto' />
     </View>
   )
 }
