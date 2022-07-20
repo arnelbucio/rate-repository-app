@@ -3,8 +3,8 @@ import * as yup from 'yup';
 import SignInForm from './SignInForm';
 
 const initialValues = {
-  mass: '',
-  height: '',
+  username: '',
+  password: '',
 }
 
 const validationSchema = yup.object().shape({
