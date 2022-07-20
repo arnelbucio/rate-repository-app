@@ -38,3 +38,12 @@ export const AUTHENTICATE = gql`
     }
   }
 `
+
+export const ME = gql`
+  {
+    me {
+      id
+      username
+    }
+  }
+`

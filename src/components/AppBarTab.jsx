@@ -1,27 +1,27 @@
-import { StyleSheet, Pressable, Text } from 'react-native';
-import { Link } from 'react-router-native';
+import { StyleSheet, View } from 'react-native'
+import { Link } from 'react-router-native'
+import Text from './Text'
 
 const styles = StyleSheet.create({
-  tab: {
-    padding: 15,
+  tabContainer: {
+    paddingHorizontal: 15,
+    paddingVertical: 20,
   },
   tabText: {
-    fontWeight: '700',
     color: '#fff'
   }
 });
 
-const AppBarTab = ({ text, route }) => {
-  const onPressFunction = () => {
-  };
-
+const AppBarTab = ({ children, ...props }) => {
   return (
-    <Pressable onPress={onPressFunction} style={styles.tab}>
-      <Link to={route}>
-        <Text style={styles.tabText}>{text}</Text>
-      </Link>
-    </Pressable>
+    <Link {...props}>
+      <View style={styles.tabContainer}>
+        <Text fontWeight='bold' style={styles.tabText}>
+          {children}
+        </Text>
+      </View>
+    </Link>
   )
-};
+}
 
 export default AppBarTab;
