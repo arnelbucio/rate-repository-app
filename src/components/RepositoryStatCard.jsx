@@ -1,4 +1,5 @@
 import { View, StyleSheet } from 'react-native'
+import { kFormatter } from '../utils'
 import Text from './Text'
 
 const styles = StyleSheet.create({
@@ -15,10 +16,6 @@ const ReposityStatCard = ({text, count}) => {
       <Text color="textSecondary">{text}</Text>
     </View>
   )
-}
-
-const kFormatter = (num) => {
-  return Math.abs(num) > 999 ? Math.sign(num)*((Math.abs(num)/1000).toFixed(1)) + 'k' : Math.sign(num)*Math.abs(num)
 }
 
 export default ReposityStatCard

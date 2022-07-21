@@ -1,9 +1,7 @@
 import { View, Image, StyleSheet } from 'react-native';
 import Text from './Text';
 import theme from '../theme';
-import ReposityStatCard from './RepositoryStatCard';
-
-
+import RepositoryStatCard from './RepositoryStatCard';
 
 const styles = StyleSheet.create({
   container: {
@@ -49,7 +47,7 @@ const styles = StyleSheet.create({
 
 const RepositoryItem = ({ item }) => {
   return (
-    <View style={styles.container}>
+    <View testID='repositoryItem' style={styles.container}>
       <View style={styles.header}>
         <Image
           style={styles.avatar}
@@ -63,11 +61,11 @@ const RepositoryItem = ({ item }) => {
           <Text style={styles.language}>{item.language}</Text>
         </View>
       </View>
-      <View style={styles.statsContainer}>
-        <ReposityStatCard text='Stars' count={item.stargazersCount} />
-        <ReposityStatCard text='Forks' count={item.forksCount} />
-        <ReposityStatCard text='Reviews' count={item.reviewCount} />
-        <ReposityStatCard text='Rating' count={item.ratingAverage} />
+      <View testID='repositoryItemStats' style={styles.statsContainer}>
+        <RepositoryStatCard text='Stars' count={item.stargazersCount} />
+        <RepositoryStatCard text='Forks' count={item.forksCount} />
+        <RepositoryStatCard text='Reviews' count={item.reviewCount} />
+        <RepositoryStatCard text='Rating' count={item.ratingAverage} />
       </View>
     </View>
   );
