@@ -4,6 +4,7 @@ import Text from './Text'
 import theme from '../theme'
 import Button from './Button'
 import RepositoryStatCard from './RepositoryStatCard'
+import { useParams } from 'react-router-native'
 
 const styles = StyleSheet.create({
   container: {
@@ -47,8 +48,9 @@ const styles = StyleSheet.create({
   }
 })
 
-const RepositoryItem = ({ repository, showGithubButton }) => {
-  // console.log('test', repository)
+const RepositoryItem = ({ repository }) => {
+  const { id } = useParams()
+
   return (
     <View testID='repositoryItem' style={styles.container}>
       <View style={styles.header}>
@@ -70,7 +72,7 @@ const RepositoryItem = ({ repository, showGithubButton }) => {
         <RepositoryStatCard text='Reviews' count={repository.reviewCount} />
         <RepositoryStatCard text='Rating' count={repository.ratingAverage} />
       </View>
-      {showGithubButton &&
+      {id &&
         <Button onPress={(() => openURL(repository.url))}>
           Open in Github
         </Button>
