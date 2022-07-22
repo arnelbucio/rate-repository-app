@@ -14,6 +14,7 @@ describe('SignIn', () => {
       fireEvent.changeText(getByPlaceholderText('Username'), 'kalle')
       fireEvent.changeText(getByPlaceholderText('Password'), 'password')
       fireEvent.press(getByText('Sign in'))
+
       await waitFor(() => {
         // expect the onSubmit function to have been called once and with a correct first argument
         expect(onSubmit).toHaveBeenCalledTimes(1)

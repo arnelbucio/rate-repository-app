@@ -1,7 +1,9 @@
-import { View, Image, StyleSheet } from 'react-native';
-import Text from './Text';
-import theme from '../theme';
-import RepositoryStatCard from './RepositoryStatCard';
+import { View, Image, StyleSheet } from 'react-native'
+import { openURL } from 'expo-linking'
+import Text from './Text'
+import theme from '../theme'
+import Button from './Button'
+import RepositoryStatCard from './RepositoryStatCard'
 
 const styles = StyleSheet.create({
   container: {
@@ -40,12 +42,12 @@ const styles = StyleSheet.create({
   statsContainer: {
     display: 'flex',
     flexDirection: 'row',
-    marginTop: 10,
+    marginVertical: 10,
     justifyContent: 'space-around'
   }
-});
+})
 
-const RepositoryItem = ({ item }) => {
+const RepositoryItem = ({ item, showGithubButton }) => {
   return (
     <View testID='repositoryItem' style={styles.container}>
       <View style={styles.header}>
@@ -67,8 +69,13 @@ const RepositoryItem = ({ item }) => {
         <RepositoryStatCard text='Reviews' count={item.reviewCount} />
         <RepositoryStatCard text='Rating' count={item.ratingAverage} />
       </View>
+      {showGithubButton &&
+        <Button onPress={(() => openURL(item.url))}>
+          Open in Github
+        </Button>
+      }
     </View>
-  );
-};
+  )
+}
 
-export default RepositoryItem;
+export default RepositoryItem

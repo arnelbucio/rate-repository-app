@@ -1,10 +1,11 @@
 import { StyleSheet, View } from 'react-native'
-import { Route, Routes, Navigate } from 'react-router-native'
+import { Route, Routes } from 'react-router-native'
 import { StatusBar } from 'expo-status-bar'
 import RepositoryList from './RepositoryList'
 import AppBar from './AppBar'
 import theme from '../theme';
 import SignIn from './SignIn';
+import Repository from './Repository'
 
 const styles = StyleSheet.create({
   container: {
@@ -21,7 +22,8 @@ const Main = () => {
       <Routes>
         <Route path='/' element={<RepositoryList />} exact />
         <Route path='/signin' element={<SignIn />} exact />
-        <Route path='*' element={<Navigate to='/' replace />} />
+        {/* <Route path='*' element={<Navigate to='/' replace />} /> */}
+        <Route path=':id' element={<Repository />} />
       </Routes>
       <StatusBar style='auto' />
     </View>
