@@ -47,30 +47,31 @@ const styles = StyleSheet.create({
   }
 })
 
-const RepositoryItem = ({ item, showGithubButton }) => {
+const RepositoryItem = ({ repository, showGithubButton }) => {
+  // console.log('test', repository)
   return (
     <View testID='repositoryItem' style={styles.container}>
       <View style={styles.header}>
         <Image
           style={styles.avatar}
           source={{
-            uri: item.ownerAvatarUrl
+            uri: repository.ownerAvatarUrl
           }}
         />
         <View style={styles.subheader}>
-          <Text style={styles.name} fontWeight="bold" fontSize="subheading">{item.fullName}</Text>
-          <Text style={styles.description} color="textSecondary">{item.description}</Text>
-          <Text style={styles.language}>{item.language}</Text>
+          <Text style={styles.name} fontWeight="bold" fontSize="subheading">{repository.fullName}</Text>
+          <Text style={styles.description} color="textSecondary">{repository.description}</Text>
+          <Text style={styles.language}>{repository.language}</Text>
         </View>
       </View>
       <View testID='repositoryItemStats' style={styles.statsContainer}>
-        <RepositoryStatCard text='Stars' count={item.stargazersCount} />
-        <RepositoryStatCard text='Forks' count={item.forksCount} />
-        <RepositoryStatCard text='Reviews' count={item.reviewCount} />
-        <RepositoryStatCard text='Rating' count={item.ratingAverage} />
+        <RepositoryStatCard text='Stars' count={repository.stargazersCount} />
+        <RepositoryStatCard text='Forks' count={repository.forksCount} />
+        <RepositoryStatCard text='Reviews' count={repository.reviewCount} />
+        <RepositoryStatCard text='Rating' count={repository.ratingAverage} />
       </View>
       {showGithubButton &&
-        <Button onPress={(() => openURL(item.url))}>
+        <Button onPress={(() => openURL(repository.url))}>
           Open in Github
         </Button>
       }

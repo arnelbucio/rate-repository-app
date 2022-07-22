@@ -46,6 +46,20 @@ export const GET_REPOSITORY = gql`
       description
       ownerAvatarUrl
       language
+      reviews {
+        edges {
+          node {
+            id
+            text
+            rating
+            createdAt
+            user {
+              id
+              username
+            }
+          }
+        }
+      }
     }
   }
 `

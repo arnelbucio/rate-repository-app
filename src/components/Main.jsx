@@ -1,5 +1,5 @@
 import { StyleSheet, View } from 'react-native'
-import { Route, Routes } from 'react-router-native'
+import { Navigate, Route, Routes } from 'react-router-native'
 import { StatusBar } from 'expo-status-bar'
 import RepositoryList from './RepositoryList'
 import AppBar from './AppBar'
@@ -22,8 +22,8 @@ const Main = () => {
       <Routes>
         <Route path='/' element={<RepositoryList />} exact />
         <Route path='/signin' element={<SignIn />} exact />
-        {/* <Route path='*' element={<Navigate to='/' replace />} /> */}
         <Route path=':id' element={<Repository />} />
+        <Route path='*' element={<Navigate to='/' replace />} />
       </Routes>
       <StatusBar style='auto' />
     </View>
