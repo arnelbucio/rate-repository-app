@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     justifyContent: 'center',
-    textAlign: 'center',
+    alignItems: 'center',
     marginRight: 15
   },
   subheader: {

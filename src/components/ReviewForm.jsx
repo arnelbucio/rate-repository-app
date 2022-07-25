@@ -66,7 +66,6 @@ const ReviewForm = () => {
           review
         }
       })
-      console.log(data)
       navigate(`/${data.repositoryId}`)
     } catch (e) {
       console.log(e)
