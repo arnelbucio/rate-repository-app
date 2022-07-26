@@ -8,6 +8,12 @@ const RepositorySorter = ({ order, setOrder }) => {
       onValueChange={(itemValue) => {
         setOrder(itemValue)
       }}
+      style={{
+        paddingVertical: 10,
+        marginTop: 10,
+        border: 0,
+        backgroundColor: 'transparent'
+      }}
     >
       <Picker.Item label='Latest repositories' value='latest' />
       <Picker.Item label='Highest rated repositories' value='highest_rated' />

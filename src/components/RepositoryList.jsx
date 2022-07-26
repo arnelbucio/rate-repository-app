@@ -1,60 +1,77 @@
+import React, { useState } from 'react'
 import { FlatList, Pressable } from 'react-native'
 import { useNavigate } from 'react-router-native'
+import { useDebounce } from "use-debounce";
 import useRepositories from '../hooks/useRepositories'
 import useRepositorySort from '../hooks/useRepositorySort'
 import ItemSeparator from './ItemSeparator'
 import RepositoryItem from './RepositoryItem'
-import RepositorySorter from './RepositorySorter'
-import Text from './Text'
+import RepositoryListHeader from './RepositoryListHeader';
 
-export const RepositoryListContainer = ({ repositories, navigate, order, setOrder }) => {
-
-  const repositoryNodes = repositories
-    ? repositories.edges.map((edge) => edge.node)
-    : []
-
-  const renderItem = ({ item }) => (
-    <Pressable onPress={(() => navigate(`/${item.id}`))}>
+export class RepositoryListContainer extends React.Component {
+  renderItem = ({ item }) => (
+    <Pressable onPress={(() => this.props.navigate(`/${item.id}`))}>
       <RepositoryItem repository={item} />
     </Pressable>
   )
 
-  return (
-    <FlatList
-      data={repositoryNodes}
-      ItemSeparatorComponent={ItemSeparator}
-      renderItem={renderItem}
-      keyExtractor={item => item.id}
-      ListHeaderComponent={() => {
-        return (
-          <RepositorySorter order={order} setOrder={setOrder} />
-        )
-      }}
-    />
-  )
+  renderHeader = () => {
+    const props = this.props
+
+    return (
+      <RepositoryListHeader {...props}/>
+    )
+  }
+
+  render() {
+    const {repositories} = this.props
+    const repositoryNodes = repositories
+      ? repositories.edges.map(edge => edge.node)
+      : []
+
+    return (
+      <FlatList
+        data={repositoryNodes}
+        ItemSeparatorComponent={ItemSeparator}
+        renderItem={this.renderItem}
+        keyExtractor={item => item.id}
+        stickyHeaderIndices={[0]}
+        ListHeaderComponent={this.renderHeader}
+      />
+    )
+  }
 }
 
 const RepositoryList = () => {
   const navigate = useNavigate()
   const [{ order, orderBy, orderDirection }, setOrder] = useRepositorySort('latest')
+  const [searchQuery, setSearchQuery] = useState('')
+  const [debouncedSearchQuery] = useDebounce(searchQuery, 500);
+
   const variables = {
     orderBy,
-    orderDirection
+    orderDirection,
+    searchKeyword: debouncedSearchQuery
   }
-  const { repositories, loading } = useRepositories({
+
+  const { repositories } = useRepositories({
     variables
   })
 
-  if (loading) {
-    return <Text>Loading</Text>
+  const handleSearchChange = (val) => {
+    setSearchQuery(val)
   }
-  return <RepositoryListContainer
 
-    repositories={repositories}
-    navigate={navigate}
-    order={order}
-    setOrder={setOrder}
-  />
+  return (
+    <RepositoryListContainer
+      repositories={repositories}
+      navigate={navigate}
+      order={order}
+      setOrder={setOrder}
+      searchQuery={searchQuery}
+      setSearchQuery={handleSearchChange}
+    />
+  )
 }
 
 export default RepositoryList
