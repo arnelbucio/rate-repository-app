@@ -67,6 +67,9 @@ export const GET_REPOSITORY = gql`
             rating
             createdAt
             repositoryId
+            repository {
+              fullName
+            }
             user {
               id
               username
@@ -105,6 +108,38 @@ export const CREATE_REVIEW = gql`
   mutation CreateReview($review: CreateReviewInput) {
     createReview(review: $review) {
       repositoryId
+    }
+  }
+`
+
+export const MY_REVIEWS = gql`
+  query Me($first: Int, $after: String) {
+    me {
+      reviews(first: $first, after: $after) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          endCursor
+          startCursor
+        }
+        edges {
+          cursor
+          node {
+            id
+            text
+            rating
+            createdAt
+            repositoryId
+            repository {
+              fullName
+            }
+            user {
+              id
+              username
+            }
+          }
+        }
+      }
     }
   }
 `

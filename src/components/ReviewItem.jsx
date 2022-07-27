@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   },
 })
 
-const ReviewItem = ({ review }) => {
+const ReviewItem = ({ review, repoAsTitle }) => {
   const date = format(new Date(review.createdAt), 'MMM dd, yyyy')
 
   return (
@@ -47,7 +47,7 @@ const ReviewItem = ({ review }) => {
           <Text color='primary' fontSize='subheading' fontWeight='bold'>{review.rating}</Text>
         </View>
         <View style={styles.subheader}>
-          <Text style={styles.name} fontWeight='bold' fontSize='subheading'>{review.user.username}</Text>
+          <Text style={styles.name} fontWeight='bold' fontSize='subheading'>{repoAsTitle ? review.repository.fullName : review.user.username}</Text>
           <Text color='textSecondary'>{date}</Text>
           <Text style={styles.text}>{review.text}</Text>
         </View>

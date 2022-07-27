@@ -27,6 +27,7 @@ const AppBar = () => {
         {me.data?.me?.id
           ? <>
               <AppBarTab to='/reviews/new'>Create a review</AppBarTab>
+              <AppBarTab to='/reviews/'>My reviews</AppBarTab>
               <AppBarTab to='' onPress={signOut}>Sign out</AppBarTab>
             </>
           : <AppBarTab to='/signin'>Sign in</AppBarTab>
