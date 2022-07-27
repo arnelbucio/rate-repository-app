@@ -3,6 +3,7 @@ import ItemSeparator from './ItemSeparator'
 import ReviewItem from './ReviewItem'
 import { useQuery } from '@apollo/client'
 import { GET_CURRENT_USER } from '../graphql/queries'
+import Text from './Text'
 
 const MyReviews = () => {
   const { data, loading, refetch } = useQuery(GET_CURRENT_USER, {
@@ -26,6 +27,7 @@ const MyReviews = () => {
       renderItem={({ item }) => <ReviewItem review={item} isOwnReview={true} refetch={refetch} />}
       keyExtractor={({id}) => id}
       ItemSeparatorComponent={ItemSeparator}
+      ListEmptyComponent={<Text>No Reviews yet.</Text>}
     />
   )
 }

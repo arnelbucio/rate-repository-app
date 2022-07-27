@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { FlatList, Pressable } from 'react-native'
 import { useNavigate } from 'react-router-native'
-import { useDebounce } from 'use-debounce';
+import { useDebounce } from 'use-debounce'
 import useRepositories from '../hooks/useRepositories'
 import useRepositorySort from '../hooks/useRepositorySort'
 import ItemSeparator from './ItemSeparator'
 import RepositoryItem from './RepositoryItem'
-import RepositoryListHeader from './RepositoryListHeader';
+import RepositoryListHeader from './RepositoryListHeader'
 
 export class RepositoryListContainer extends React.Component {
   renderItem = ({ item }) => (
