@@ -16,27 +16,26 @@ export class RepositoryListContainer extends React.Component {
   )
 
   renderHeader = () => {
-    const props = this.props
-
     return (
-      <RepositoryListHeader {...props}/>
+      <RepositoryListHeader {...this.props}/>
     )
   }
 
   render() {
-    const {repositories} = this.props
+    const {repositories, onEndReach} = this.props
     const repositoryNodes = repositories
       ? repositories.edges.map(edge => edge.node)
       : []
-
+    // console.log(this.props)
     return (
       <FlatList
         data={repositoryNodes}
         ItemSeparatorComponent={ItemSeparator}
         renderItem={this.renderItem}
         keyExtractor={item => item.id}
-        stickyHeaderIndices={[0]}
         ListHeaderComponent={this.renderHeader}
+        onEndReached={onEndReach}
+        onEndReachedThreshold={0.1}
       />
     )
   }
@@ -49,14 +48,19 @@ const RepositoryList = () => {
   const [debouncedSearchQuery] = useDebounce(searchQuery, 500);
 
   const variables = {
+    first: 8,
     orderBy,
     orderDirection,
     searchKeyword: debouncedSearchQuery
   }
+  console.log(variables)
 
-  const { repositories } = useRepositories({
-    variables
-  })
+  const { repositories, fetchMore } = useRepositories(variables)
+
+  const onEndReach = () => {
+    console.log('fetch')
+    fetchMore()
+  }
 
   const handleSearchChange = (val) => {
     setSearchQuery(val)
@@ -65,6 +69,7 @@ const RepositoryList = () => {
   return (
     <RepositoryListContainer
       repositories={repositories}
+      onEndReach={onEndReach}
       navigate={navigate}
       order={order}
       setOrder={setOrder}

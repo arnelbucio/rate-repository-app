@@ -9,11 +9,11 @@ import { useParams } from 'react-router-native'
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
-    padding: 10
+    padding: 15,
   },
   header: {
-    display: 'flex',
     flexDirection: 'row',
+    marginBottom: 15,
   },
   subheader: {
     flexDirection: 'column',
@@ -41,7 +41,6 @@ const styles = StyleSheet.create({
     borderRadius: 4
   },
   statsContainer: {
-    display: 'flex',
     flexDirection: 'row',
     marginVertical: 10,
     justifyContent: 'space-around'
