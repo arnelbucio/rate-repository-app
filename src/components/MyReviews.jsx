@@ -5,7 +5,7 @@ import { useQuery } from '@apollo/client'
 import { GET_CURRENT_USER } from '../graphql/queries'
 
 const MyReviews = () => {
-  const { data, loading } = useQuery(GET_CURRENT_USER, {
+  const { data, loading, refetch } = useQuery(GET_CURRENT_USER, {
     variables: {
       includeReviews: true
     },
@@ -23,7 +23,7 @@ const MyReviews = () => {
   return (
     <FlatList
       data={reviews}
-      renderItem={({ item }) => <ReviewItem review={item} repoAsTitle={true} />}
+      renderItem={({ item }) => <ReviewItem review={item} isOwnReview={true} refetch={refetch} />}
       keyExtractor={({id}) => id}
       ItemSeparatorComponent={ItemSeparator}
     />
