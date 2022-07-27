@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { FlatList, Pressable } from 'react-native'
 import { useNavigate } from 'react-router-native'
-import { useDebounce } from "use-debounce";
+import { useDebounce } from 'use-debounce';
 import useRepositories from '../hooks/useRepositories'
 import useRepositorySort from '../hooks/useRepositorySort'
 import ItemSeparator from './ItemSeparator'
@@ -26,7 +26,7 @@ export class RepositoryListContainer extends React.Component {
     const repositoryNodes = repositories
       ? repositories.edges.map(edge => edge.node)
       : []
-    // console.log(this.props)
+
     return (
       <FlatList
         data={repositoryNodes}
@@ -53,12 +53,10 @@ const RepositoryList = () => {
     orderDirection,
     searchKeyword: debouncedSearchQuery
   }
-  console.log(variables)
 
   const { repositories, fetchMore } = useRepositories(variables)
 
   const onEndReach = () => {
-    console.log('fetch')
     fetchMore()
   }
 

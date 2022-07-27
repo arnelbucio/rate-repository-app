@@ -13,6 +13,7 @@ const useRepositories = variables => {
     if (!canFetchMore) {
       return
     }
+
     fetchMore({
       variables: {
         after: data.repositories.pageInfo.endCursor,
