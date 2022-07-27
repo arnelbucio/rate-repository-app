@@ -95,35 +95,13 @@ export const AUTHENTICATE = gql`
   }
 `
 
-export const ME = gql`
-  {
+export const GET_CURRENT_USER = gql`
+  query getCurrentUser($includeReviews: Boolean = false) {
     me {
       id
       username
-    }
-  }
-`
-
-export const CREATE_REVIEW = gql`
-  mutation CreateReview($review: CreateReviewInput) {
-    createReview(review: $review) {
-      repositoryId
-    }
-  }
-`
-
-export const MY_REVIEWS = gql`
-  query Me($first: Int, $after: String) {
-    me {
-      reviews(first: $first, after: $after) {
-        totalCount
-        pageInfo {
-          hasNextPage
-          endCursor
-          startCursor
-        }
+      reviews @include(if: $includeReviews) {
         edges {
-          cursor
           node {
             id
             text
@@ -138,8 +116,22 @@ export const MY_REVIEWS = gql`
               username
             }
           }
+          cursor
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+          startCursor
         }
       }
+    }
+  }
+`
+
+export const CREATE_REVIEW = gql`
+  mutation CreateReview($review: CreateReviewInput) {
+    createReview(review: $review) {
+      repositoryId
     }
   }
 `
